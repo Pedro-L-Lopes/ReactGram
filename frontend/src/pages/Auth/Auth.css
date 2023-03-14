@@ -1,0 +1,56 @@
+#login,
+#register {
+  /* border: 1px solid #0094f6; */
+  background-color: #00000057;
+  border-radius: 5px;
+  padding: 1.5em 2em;
+  max-width: 33%;
+  margin: 5em auto;
+}
+
+#login h2,
+#register h2 {
+  text-align: center;
+  font-size: 2.1em;
+  margin-top: 0;
+}
+
+.subtitle {
+  font-weight: bold;
+  color: #999;
+  margin-bottom: 1.5em;
+}
+
+#login form,
+#register form {
+  padding-bottom: 1.5em;
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid #0084dc;
+  
+  animation-name: bottom-bar-animation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bottom-bar-animation {
+  0% {border-bottom: 1px solid #0094f6;}
+  25% {border-bottom: 1px solid white;}
+  50% {border-bottom: 1px solid #0094f6;}
+  75% {border-bottom: 1px solid white;}
+  100% {border-bottom: 1px solid #0094f6;}
+} 
+
+#login p,
+#register p {
+  text-align: center;
+}
+
+#login p a,
+#register p a {
+  font-weight: bold;
+  color: #0094f6;
+}
+
+h2{
+  font-family: 'Mynerve', sans-serif;
+}
