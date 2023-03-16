@@ -14,7 +14,7 @@ export const profile = createAsyncThunk(
     "user/profile",
     async(user, thunkAPI) => {
 
-        const token = thunkAPI.getState().auth.user.token // Usando a thunkAPI para pegar no authSlice
+        const token = thunkAPI.getState().auth.user.token
 
         const data = await userService.profile(user, token)
 
@@ -39,7 +39,6 @@ export const updateProfile = createAsyncThunk(
     }
 )
 
-// Criando reducer para setar na store
 export const userSlice = createSlice({
     name: "user",
     initialState,
@@ -52,7 +51,7 @@ export const userSlice = createSlice({
         builder.addCase(profile.pending, (state) => {
             state.loading = true
             state.error = false
-        }).addCase(profile.fulfilled, (state, action) => { // Quando a req for um sucesso
+        }).addCase(profile.fulfilled, (state, action) => { 
             state.loading = false
             state.success = true
             state.error = null
@@ -60,7 +59,7 @@ export const userSlice = createSlice({
         }).addCase(updateProfile.pending, (state) => {
             state.loading = true
             state.error = false
-        }).addCase(updateProfile.fulfilled, (state, action) => { // Quando a req for um sucesso
+        }).addCase(updateProfile.fulfilled, (state, action) => {
             state.loading = false
             state.success = true
             state.error = null
