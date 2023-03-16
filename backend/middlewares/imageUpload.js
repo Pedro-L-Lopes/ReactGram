@@ -1,10 +1,10 @@
-const multer = require("multer") // Upload de arquivos 
-const path = require("path") // Modulo padrão do node
+const multer = require("multer") 
+const path = require("path") 
 
 
 // Destination to store image
 const imageStore = multer.diskStorage({
-    destination: (req, file, cb) => { // Requisição, arquivo e  possibilidade de ter uma callback
+    destination: (req, file, cb) => { 
         let folder = ""
 
         if(req.baseUrl.includes("users")) {
@@ -13,7 +13,6 @@ const imageStore = multer.diskStorage({
             folder = "photos"
         }
 
-        // A callback "dizendo" que a pasta para salvar imagens é a uploads
         cb(null, `uploads/${folder}/`)
     },
     filename: (req, file, cb) => {
