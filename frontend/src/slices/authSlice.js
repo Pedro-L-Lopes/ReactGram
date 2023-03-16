@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, createNextState } from '@reduxjs/toolkit'
 import authService from '../services/authService'
 
-// Pegando usuario da localStorage
 const user = JSON.parse(localStorage.getItem("user"))
 
 const initialState = {
@@ -11,13 +10,12 @@ const initialState = {
     loading: false,
 }
 
-// Regsiter an user and sing in // O nome segue está convenção auth = entidade que está trabalhando register = ação atual // Segundo argumento é a função // thunkAPI = Funções extras ex: parar execução e identificar um erro da api
+// Regsiter an user and sing in 
 export const register = createAsyncThunk("auth/register", async(user, thunkAPI) => {
     const data = await authService.register(user)
 
-    // Check for errors
-    if(data.errors){ // Rejeitando a requisição pois houve algo errado
-        return thunkAPI.rejectWithValue(data.errors[0]) // errors = É o que tem no backend que tem varias msg
+    if(data.errors){ 
+        return thunkAPI.rejectWithValue(data.errors[0])
     }
 
     return data
@@ -32,30 +30,28 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 export const login = createAsyncThunk("auth/login", async(user, thunkAPI) => {
     const data = await authService.login(user)
 
-    // Check for errors
-    if(data.errors){ // Rejeitando a requisição pois houve algo errado
-        return thunkAPI.rejectWithValue(data.errors[0]) // errors = É o que tem no backend que tem varias msg
+    if(data.errors){ 
+        return thunkAPI.rejectWithValue(data.errors[0])
     }
 
     return data
 })
 
 export const authSlice = createSlice({ 
-    name: "auth", // Nomear para que seja chamado na store e seja extraido valores por esse nome
+    name: "auth", 
     initialState,
     reducers: {
-        reset: (state) => { //  reset = reseta como se recarregase etc
+        reset: (state) => { 
             state.loading = false
             state.error = false
             state.success = false
         },
     },
-    extraReducers: (builder) => { // Parte das exucuções feitas na API trabalham diretamente com os estados atual de cada requisição // builder = contrutor, vai criar as ações separadamente
-        // Se a requisição foi enviada mas não chegou nenhuma resposta = state.loading = true
+    extraReducers: (builder) => {
         builder.addCase(register.pending, (state) => {
             state.loading = true
             state.error = false
-        }).addCase(register.fulfilled, (state, action) => { // Quando a req for um sucesso
+        }).addCase(register.fulfilled, (state, action) => { 
             state.loading = false
             state.success = true
             state.error = null
@@ -72,7 +68,7 @@ export const authSlice = createSlice({
         }).addCase(login.pending, (state) => {
             state.loading = true
             state.error = false
-        }).addCase(login.fulfilled, (state, action) => { // Quando a req for um sucesso
+        }).addCase(login.fulfilled, (state, action) => {
             state.loading = false
             state.success = true
             state.error = null
