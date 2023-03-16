@@ -35,9 +35,9 @@ const insertPhoto = async(req, res) => {
 // Remove a photo from DB
 const deletePhoto = async(req, res) => {
 
-    const {id} = req.params // Id da foto pela url
+    const {id} = req.params 
 
-    const reqUser = req.user // Usuario pela requisição
+    const reqUser = req.user
 
    try {
     const photo = await Photo.findById(mongoose.Types.ObjectId(id))
@@ -65,7 +65,6 @@ const deletePhoto = async(req, res) => {
 
 // Get all photos
 const getAllPhotos = async(req, res) => {
-    // Find({}) == buscar todos // createdAt", -1 == Buscar os mais novos primeiro // .exec() == executar a "querry"
     const photos = await Photo.find({}).sort([["createdAt", -1]]).exec()
 
     return res.status(200).json(photos)
@@ -74,7 +73,7 @@ const getAllPhotos = async(req, res) => {
 
 // Get user photos
 const getUserPhotos = async(req, res) => {
-    const {id} = req.params // Id da url pois pposso pegar as fotos de qualquer usuario e não apenas o seu
+    const {id} = req.params 
 
     const photos = await Photo.find({userId: id}).sort([["createdAt", -1]]).exec()
 
@@ -190,9 +189,7 @@ const CommentPhoto = async(req, res) => {
 
 // Search photos by title
 const searchPhotos = async(req, res) => {
-    const {q} = req.query // espera o argumento q da querry string da url, não vem como parametro
-
-    // Necessario fazer uma expressão regular, instanciar o objeto com new regExp() dizendo que o q que estou procurando está em qualquer lugar da string. ( vai ignorar a caseSensitive)
+    const {q} = req.query
     const photos = await Photo.find({title: new RegExp(q, "i")}).exec()
 
     res.status(200).json(photos)
