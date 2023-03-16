@@ -6,11 +6,10 @@ const { default: mongoose } = require("mongoose");
 
 const jwtSecret = process.env.JWT_SECRET;
 
-//Função para criar o token que sera utilizada quando usuario é registrado/faz login
 // Generate user token
-const generateToken = (id) => { // Está esperando o id do usuario (Vai inserir o id no token)
-  return jwt.sign({ id }, jwtSecret, { //id do usuario, jwtSecret
-    expiresIn: "7d", // Data de expiração (7 dias)
+const generateToken = (id) => { /
+  return jwt.sign({ id }, jwtSecret, { 
+    expiresIn: "7d", 
   });
 };
 
@@ -19,16 +18,16 @@ const register = async (req, res) => {
   const { name, email, password } = req.body;
 
   // check if user exists
-  const user = await User.findOne({ email }); // Encontrando usuario pelo email
+  const user = await User.findOne({ email }); 
 
   if (user) {
     res.status(422).json({ errors: ["Por favor, utilize outro e-mail."] });
     return;
   }
 
-  // Generate password hash // Criptografando a senha com a bcrypt
+  // Generate password hash 
   const salt = await bcrypt.genSalt();
-  const passwordHash = await bcrypt.hash(password, salt); // Gera uma senha aleatoria muito loca
+  const passwordHash = await bcrypt.hash(password, salt); 
 
   // Create user
   const newUser = await User.create({
