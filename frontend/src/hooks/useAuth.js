@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {useSelector} from 'react-redux' //Como está em redux, precisa para pegar os dados da store
+import {useSelector} from 'react-redux' 
 
 export const useAuth = () => {
     const { user } = useSelector((state) => state.auth)
