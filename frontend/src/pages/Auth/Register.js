@@ -22,9 +22,8 @@ const Resgister = () => {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
 
-  const dispatch = useDispatch() // Permite utilizar as funções do redux (register, reset)
+  const dispatch = useDispatch() 
 
-  // Extraindo o estado que esta no slice (login, success, error)
   const {loading, error} = useSelector((state) => state.auth)
 
   const handleSubmit = (e) => {
