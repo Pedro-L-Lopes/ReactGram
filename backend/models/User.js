@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {Schema} = mongoose // Schema -> Como se fosse o esqueleto do model
+const {Schema} = mongoose 
 
 const userSchema = new Schema(
     {
@@ -10,10 +10,10 @@ const userSchema = new Schema(
     bio: String  
     },
     {
-        timestamps: true //Dois campos serão criados no model create_at e update_at 
+        timestamps: true 
     }
 )
 
-const User = mongoose.model("User", userSchema) //Definindo model nome: User, é necessario passar um schema para para o modulo
+const User = mongoose.model("User", userSchema) 
 
 module.exports = User 
