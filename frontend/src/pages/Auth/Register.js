@@ -39,12 +39,10 @@ const Resgister = () => {
 
     console.log(user)
 
-    // Recebe o user manda para api e retorna a resposta
     dispatch(register(user))
   } 
 
   // Clean all auth states
-  // Sempre que rolar um dispatch fazer um useEffect para disparar o reset (Zerar tudo e pegar os dados na nova requisição)
   useEffect(() => {
     dispatch(reset())
   }, [dispatch])
